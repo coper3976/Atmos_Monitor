@@ -54,7 +54,7 @@ if __name__ == "__main__":
     ''' --------------------------------- Main --------------------------------- '''
     MONITOR_DELAY = 5
     # 기존 상품정보 가져오기
-    print("초기 페이지 로딩...")
+    print("DB 생성중...")
     driver.get('http://www.atmos-seoul.com/shop/shopbrand.html?xcode=003&type=N&mcode=001&gf_ref=Yz12UEthNk0=')
     html = driver.page_source
     soup = BeautifulSoup(html, 'lxml')
@@ -75,10 +75,11 @@ if __name__ == "__main__":
     product_db.pop('AT X NE X HAT BLACK')
 
     #모니터링 시작
-    print("<모니터 시작>")
+    print("<모니터링 시작>")
     for loopCnt in tqdm(range(int(5))):
         html = driver.page_source
         soup = BeautifulSoup(html, 'lxml')
+        print("모니터링 중..")
         driver.get('http://www.atmos-seoul.com/shop/shopbrand.html?xcode=003&type=N&mcode=001&gf_ref=Yz12UEthNk0=')
 
         divs = soup.find('div', class_='item-wrap prd-parts')
@@ -91,7 +92,12 @@ if __name__ == "__main__":
             img = "http://www.atmos-seoul.com" + div.find('dt', class_='thumb').img['src']
             if ProductID not in product_db.keys():
                 product_db[ProductID] = [brand, ProductID, price, productLink, img]
-                print("브랜드 :", brand, "제품명 :", ProductID, "가격 :", price, "제품링크 :", productLink, "제품 이미지 :", img)
+                print("새 상품이 추가 됐습니다.")
+                print("브랜드 :", brand)
+                print("제품명 :", ProductID)
+                print("가격 :", price)
+                print("제품링크 :", productLink)
+                print("제품 이미지 :", img)
         time.sleep(MONITOR_DELAY)
 
 
