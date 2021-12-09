@@ -12,18 +12,6 @@ from pathos.multiprocessing import ProcessingPool as Pool
 from discord_hooks import Webhook
 from tqdm import tqdm
 
-
-# 크롬이 있는 폴더로 이동..
-#cd C:\Program Files (x86)\Google\Chrome\Application
-
-# 크롬 디버깅 창 띄우기
-#chrome.exe --remote-debugging-port=9222 --user-data-dir="C:/Chrome_debug_temp"
-
-# 디버깅 크롬창이 떠 있는지 확인
-#netstat -ano | findstr 9222
-
-#pyinstaller -F --add-binary "C:\Users\user\Desktop\chromedriver\chromedriver.exe;." tt.py
-
 options = webdriver.ChromeOptions()
 options.add_argument('user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/93.0.4577.82 Safari/537.36')
 options.add_argument('--disable-blink-features=AutomationControlled')
